@@ -1,0 +1,103 @@
+<div class="margin-top"></div>
+
+<mat-card>
+  <mat-card-title>Generate Report</mat-card-title>
+  <mat-card-content class="margin-no">
+    <form #f="ngForm">
+      <br>
+      <mat-form-field appearance="fill" class="width">
+        <mat-label>First</mat-label>
+        <input matInput name="first" #fi="ngModel" [matDatepicker]="pickerFirst" [(ngModel)]="req.first" required>
+        <mat-datepicker-toggle matSuffix [for]="pickerFirst"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFirst></mat-datepicker>
+        <mat-error *ngIf="(fi.dirty || fi.touched) && fi.errors?.required">Date must not be empty</mat-error>
+      </mat-form-field>
+      <span class="spacer"></span>
+      <mat-form-field appearance="fill" class="width">
+        <mat-label>Last</mat-label>
+        <input matInput name="last" #la="ngModel" [matDatepicker]="pickerLast" [(ngModel)]="req.last" required>
+        <mat-datepicker-toggle matSuffix [for]="pickerLast"></mat-datepicker-toggle>
+        <mat-datepicker #pickerLast></mat-datepicker>
+        <mat-error *ngIf="(la.dirty || la.touched) && la.errors?.required">Date must not be empty</mat-error>
+      </mat-form-field>
+      <span class="spacer"></span>
+      <mat-form-field appearance="fill" class="width">
+        <mat-label>Entity</mat-label>
+        <mat-select [(ngModel)]="entity.id" #b="ngModel" name="entity" required>
+          <mat-option *ngFor="let entity of entities" [value]="entity.id">{{entity.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="(b.dirty || b.touched) && b.errors?.required">Entity must not be empty</mat-error>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <div class="fabs">
+    <button mat-fab color="accent" [disabled]="f.invalid" (click)="gen()">
+      <mat-icon>legend_toggle</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <button mat-fab color="accent" [disabled]="f.invalid" (click)="print()">
+      <mat-icon>print</mat-icon>
+    </button>
+  </div>
+</mat-card>
+
+<span class="spacer-v"></span>
+
+<mat-accordion multi *ngIf="ready">
+
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Date Segment Information
+      </mat-panel-title>
+      <mat-panel-description>
+        Information about {{resp.entity === undefined ? '' : resp.entity.name}} in date segment between {{resp.first | date}} and {{resp.last | date}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>
+        <div mat-line>Segment balance is {{resp.sum}}</div>
+      </mat-list-item>
+    </mat-list>
+    <mat-list>
+      <div mat-subheader>Buys</div>
+      <mat-list-item *ngFor="let buy of resp.buyDeals">
+        <div mat-line>
+          {{buy.quantity}} {{buy.item?.unit?.name}} of {{buy.item?.name}} ({{buy.date}})
+        </div>
+      </mat-list-item>
+      <div mat-subheader>Sells</div>
+      <mat-list-item *ngFor="let sell of resp.sellDeals">
+        <div mat-line>
+          {{sell.quantity}} {{sell.item?.unit?.name}} of {{sell.item?.name}} ({{sell.date}})
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Current Information
+      </mat-panel-title>
+      <mat-panel-description>
+        Current information about {{resp.entity === undefined ? '' : resp.entity.name}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>
+        <div mat-line>Current balance is {{resp.allSum}}</div>
+      </mat-list-item>
+    </mat-list>
+    <mat-list>
+      <div mat-subheader>Items</div>
+      <mat-list-item *ngFor="let item of resp.allItems">
+        <div mat-line>{{item.quantity}}
+          {{item.item === undefined ? '' : item.item.name}}
+          {{item.item === undefined ? '' : (item.item.unit === undefined ? '' : item.item.unit.name)}}</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<div class="margin-bot"></div>

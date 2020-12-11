@@ -1,0 +1,9 @@
+<button mat-fab color="accent" class="fab" routerLink="/item-add">
+  <mat-icon>add</mat-icon>
+</button>
+<mat-action-list *ngFor="let item of items" class="width">
+  <button mat-list-item class="width" routerLink="/item-write/{{item.id}}">
+    <div mat-line>{{item.name}}</div>
+    <mat-icon>category</mat-icon>
+  </button>
+</mat-action-list>

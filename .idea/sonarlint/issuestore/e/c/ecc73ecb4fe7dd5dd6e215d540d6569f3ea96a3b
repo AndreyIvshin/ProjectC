@@ -1,0 +1,20 @@
+
+t
+java:S3776%"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(Ð›¿þûÿÿÿÿ8í¬šÈâ.
+^	java:S125€"<This block of commented-out lines of code should be removed.(¸Î§òøÿÿÿÿ8çÏèÈâ.
+L
+java:S2093u"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ8çÏèÈâ.
+g
+java:S2095w"JUse try-with-resources or close this "XSSFWorkbook" in a "finally" clause.(¸™á…8çÏèÈâ.
+Z	java:S106("9Replace this use of System.out or System.err by a logger.(Ê†”¶þÿÿÿÿ8‚¨øËâ.
+U	java:S106)"9Replace this use of System.out or System.err by a logger.(¦¸÷×8‚¨øËâ.
+Q
+java:S1481v"/Remove this unused "dateFormat" local variable.(§Üö‰øÿÿÿÿ8çÏèÈâ.
+Z	java:S106'"9Replace this use of System.out or System.err by a logger.(—±üÇøÿÿÿÿ8÷Ï÷Ëâ.
+M
+java:S1172s"+Remove this unused method parameter "resp".(ù½…–þÿÿÿÿ8çÏèÈâ.
+T
+java:S3655."7Call "Optional#isPresent()" before accessing the value.(Ìü8¤ÅâÆâ.
+U	java:S106b"9Replace this use of System.out or System.err by a logger.(„€±×8Œ‡Ìâ.
+U	java:S106a"9Replace this use of System.out or System.err by a logger.(¦º¦œ8Œ‡Ìâ.
+Z	java:S106`"9Replace this use of System.out or System.err by a logger.(Àß™üÿÿÿÿ8Œ‡Ìâ.

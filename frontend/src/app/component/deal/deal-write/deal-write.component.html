@@ -1,0 +1,65 @@
+<mat-card>
+  <mat-card-title>Write Deal</mat-card-title>
+  <mat-card-content>
+    <form #f="ngForm">
+      <br>
+      <mat-form-field appearance="fill" class="width">
+        <mat-label>Date</mat-label>
+        <input matInput name="date" #d="ngModel" [matDatepicker]="picker" [(ngModel)]="deal.date" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="(d.dirty || d.touched) && d.errors?.required">Date must not be empty</mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field appearance="fill" class="width">
+        <mat-label>Price</mat-label>
+        <input matInput name="price" #p="ngModel" [(ngModel)]="deal.price" required pattern="^(([1-9]{1}[0-9]*)|((([1-9]{1}[0-9]*)|([0]{1}))[.]{1}([0-9]+)))$">
+        <mat-error *ngIf="(p.dirty || p.touched) && p.errors?.required">Price must not be empty</mat-error>
+        <mat-error *ngIf="(p.dirty || p.touched) && p.hasError('pattern')">Price must be number and positive</mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field appearance="fill" class="width">
+        <mat-label>Quantity</mat-label>
+        <input matInput name="quantity" #q="ngModel" [(ngModel)]="deal.quantity" required pattern="^(([1-9]{1}[0-9]*)|((([1-9]{1}[0-9]*)|([0]{1}))[.]{1}([0-9]+)))$">
+        <mat-error *ngIf="(q.dirty || q.touched) && q.errors?.required">Quantity must not be empty</mat-error>
+        <mat-error *ngIf="(q.dirty || q.touched) && q.hasError('pattern')">Quantity must be number and positive</mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field appearance="fill" class="width">
+        <mat-label>Item</mat-label>
+        <mat-select [(ngModel)]="item.id" #i="ngModel" name="item" required>
+          <mat-option *ngFor="let item of items" [value]="item.id">{{item.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="(i.dirty || i.touched) && i.errors?.required">Item must not be empty</mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field appearance="fill" class="width">
+        <mat-label>Seller</mat-label>
+        <mat-select [(ngModel)]="seller.id" #s="ngModel" name="seller" required>
+          <mat-option *ngFor="let entity of entities" [value]="entity.id">{{entity.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="(s.dirty || s.touched) && s.errors?.required">Seller must not be empty</mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field appearance="fill" class="width">
+        <mat-label>Buyer</mat-label>
+        <mat-select [(ngModel)]="buyer.id" #b="ngModel" name="buyer" required>
+          <mat-option *ngFor="let entity of entities" [value]="entity.id">{{entity.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="(b.dirty || b.touched) && b.errors?.required">Buyer must not be empty</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-error *ngIf="sellerIsBuyer()">Seller must not be Buyer</mat-error>
+      <br>
+      <button mat-raised-button color="primary" [disabled]="f.invalid || sellerIsBuyer()" (click)="write()">Write</button>
+      <span class="spacer"></span>
+      <button mat-raised-button color="warn" (click)="remove()">Remove</button>
+    </form>
+    <br>
+  </mat-card-content>
+</mat-card>

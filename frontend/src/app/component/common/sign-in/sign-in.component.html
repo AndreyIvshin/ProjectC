@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-title>Sign In</mat-card-title>
+  <mat-card-content>
+    <form #f="ngForm">
+      <br>
+      <mat-error *ngIf="notFound">Username not found</mat-error>
+      <mat-error *ngIf="forbidden">Wrong password</mat-error>
+      <mat-form-field class="width">
+        <mat-label>Username</mat-label>
+        <input matInput type="text" name="username" #u="ngModel" [(ngModel)]="user.username" required minlength="4"
+               maxlength="40">
+        <mat-error *ngIf="(u.dirty || u.touched) && u.errors?.required">Username must not be empty</mat-error>
+        <mat-error *ngIf="(u.dirty || u.touched) && u.hasError('minlength')">Length must not be less than 4
+        </mat-error>
+        <mat-error *ngIf="(u.dirty || u.touched) && u.hasError('maxlength')">Length must not be more than 40
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field class="width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" name="password" #p="ngModel" [(ngModel)]="user.password" required
+               minlength="4" maxlength="40">
+        <mat-error *ngIf="(p.dirty || p.touched) && p.errors?.required">Password must not be empty</mat-error>
+        <mat-error *ngIf="(p.dirty || p.touched) && p.hasError('minlength')">Length must not be less than 4
+        </mat-error>
+        <mat-error *ngIf="(p.dirty || p.touched) && p.hasError('maxlength')">Length must not be more than 40
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <button mat-raised-button color="primary" [disabled]="f.invalid" (click)="signIn()">Sign In</button>
+    </form>
+  </mat-card-content>
+</mat-card>

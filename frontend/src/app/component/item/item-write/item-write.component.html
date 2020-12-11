@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-title>Write Item</mat-card-title>
+  <mat-card-content>
+    <form #f="ngForm">
+      <br>
+      <mat-form-field class="width">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" name="name" #n="ngModel" [(ngModel)]="item.name" required minlength="2" maxlength="100">
+        <mat-error *ngIf="(n.dirty || n.touched) && n.errors?.required">Name must not be empty</mat-error>
+        <mat-error *ngIf="(n.dirty || n.touched) && n.hasError('minlength')">Length must not be less than 2</mat-error>
+        <mat-error *ngIf="(n.dirty || n.touched) && n.hasError('maxlength')">Length must not be more than 100</mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field appearance="fill" class="width">
+        <mat-label>Unit</mat-label>
+        <mat-select [(ngModel)]="unit.id" #u="ngModel" name="unit" required>
+          <mat-option *ngFor="let unit of units" [value]="unit.id">{{unit.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="(u.dirty || u.touched) && u.errors?.required">Unit must not be empty</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-error *ngIf="!canBeRemoved">Can't be removed</mat-error>
+      <br>
+      <button mat-raised-button color="primary" [disabled]="f.invalid" (click)="write()">Write</button>
+      <span class="spacer"></span>
+      <button mat-raised-button color="warn" (click)="remove()">Remove</button>
+    </form>
+  </mat-card-content>
+</mat-card>

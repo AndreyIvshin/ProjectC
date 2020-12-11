@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+
+  frontend:
+    image: nginx:1.19
+    ports:
+      - 4200:80
+    volumes:
+      - ./frontend/dist/frontend:/usr/share/nginx/html
+
+  backend:
+    build: .
+    ports:
+      -  8080:8080
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432:5432
+

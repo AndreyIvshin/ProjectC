@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-title>Add Entity</mat-card-title>
+  <mat-card-content>
+    <form #f="ngForm">
+      <br>
+      <mat-form-field class="width">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" name="name" #n="ngModel" [(ngModel)]="entity.name" required minlength="2" maxlength="100">
+        <mat-error *ngIf="(n.dirty || n.touched) && n.errors?.required">Name must not be empty</mat-error>
+        <mat-error *ngIf="(n.dirty || n.touched) && n.hasError('minlength')">Length must not be less than 2</mat-error>
+        <mat-error *ngIf="(n.dirty || n.touched) && n.hasError('maxlength')">Length must not be more than 100</mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <button mat-raised-button color="primary" [disabled]="f.invalid" (click)="add()">Add</button>
+    </form>
+  </mat-card-content>
+</mat-card>

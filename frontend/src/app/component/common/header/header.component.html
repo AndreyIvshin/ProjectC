@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <button mat-button routerLink="/">ProjectC</button>
+  <button mat-button routerLink="/item-list" *ngIf="isAuthorized()">Items</button>
+  <button mat-button routerLink="/unit-list" *ngIf="isAuthorized()">Units</button>
+  <button mat-button routerLink="/entity-list" *ngIf="isAuthorized()">Entities</button>
+  <button mat-button routerLink="/deal-list" *ngIf="isAuthorized()">Deals</button>
+  <button mat-button routerLink="/report" *ngIf="isAuthorized()">Report</button>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/sign-in" *ngIf="!isAuthorized()">Sign In</button>
+  <button mat-button *ngIf="isAuthorized()" (click)="signOut()">Sign Out</button>
+</mat-toolbar>

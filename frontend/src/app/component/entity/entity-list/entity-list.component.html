@@ -1,0 +1,9 @@
+<button mat-fab color="accent" class="fab" routerLink="/entity-add">
+  <mat-icon>add</mat-icon>
+</button>
+<mat-action-list *ngFor="let entity of entities" class="width">
+  <button mat-list-item class="width" routerLink="/entity-write/{{entity.id}}">
+    <div mat-line>{{entity.name}}</div>
+    <mat-icon>business</mat-icon>
+  </button>
+</mat-action-list>

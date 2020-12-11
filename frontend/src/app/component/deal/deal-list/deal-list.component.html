@@ -1,0 +1,10 @@
+<button mat-fab color="accent" class="fab" routerLink="/deal-add">
+  <mat-icon>add</mat-icon>
+</button>
+<mat-action-list *ngFor="let deal of deals" class="width">
+  <button mat-list-item class="width" routerLink="/deal-write/{{deal.id}}">
+    <div mat-line>{{deal.date}}: for {{deal.price}} {{deal.quantity}} {{deal.item?.unit?.name}} of {{deal.item?.name}}
+      from {{deal.seller?.name}} to {{deal.buyer?.name}}</div>
+    <mat-icon>payments</mat-icon>
+  </button>
+</mat-action-list>

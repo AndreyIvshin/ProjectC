@@ -1,0 +1,25 @@
+.width {
+  width: 20rem;
+}
+
+.spacer {
+  margin: 0.25rem;
+}
+
+.spacer-v {
+  margin: 0.25rem;
+}
+
+.fabs {
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+}
+
+.list-width {
+  width: 40rem;
+}
+
+.margin-no {
+  margin: 0;
+}
