@@ -1,7 +1,0 @@
-
-j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹æà°8Ššè¾â.
-j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÞÁ„Ç8žãÅ¾â.
-o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿Šº™ûÿÿÿÿ8ˆùÚÆâ.
-o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»·ÄÅùÿÿÿÿ8žãÅ¾â.
-H
-java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü8´¯ÚÆâ.
